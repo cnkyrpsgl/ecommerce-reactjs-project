@@ -1,0 +1,80 @@
+{
+  "plugins": ["prettier", "simple-import-sort"],
+  "extends": [
+    "react-app",
+    "airbnb-typescript",
+    "prettier",
+    "prettier/@typescript-eslint",
+    "prettier/react"
+  ],
+  "parserOptions": {
+    "project": "./tsconfig.json",
+  },
+  "rules": {
+    "react/jsx-props-no-spreading": "off",
+    "prettier/prettier": "error",
+    // Private ts class members uses underscore
+    "no-underscore-dangle": "off",
+    "import/no-extraneous-dependencies": "off",
+    // Redundant after typescript
+    "react/prop-types": "off",
+    // style rules
+    "@typescript-eslint/explicit-function-return-type": "off",
+    "@typescript-eslint/no-empty-interface": "off",
+    "@typescript-eslint/no-unused-vars": "off",
+    "no-nested-ternary": "off",
+    // for @reduxjs/toolkit reducers
+    "no-param-reassign": [
+      "error",
+      {
+        "props": true,
+        "ignorePropertyModificationsFor": ["state"]
+      }
+    ],
+    // import rules config
+    "simple-import-sort/sort": "error",
+    "no-restricted-imports": ["error", {
+      "paths": [{
+        "name": "react-redux",
+        "importNames": ["connect"],
+        "message": "Please use hooks (useActions, useSelectors) instead."
+      }]
+    }]
+  },
+  "settings": {
+    "import/resolver": {
+      "alias": {
+        "map": [["@", "./src"]],
+        "extensions": [".js", ".jsx", ".ts", ".tsx"]
+      }
+    }
+  },
+  "overrides": [
+    {
+      "files": [
+        "*.test.ts",
+        "*.test.tsx"
+      ],
+      "env": {
+        "jest": true
+      }
+    },
+    {
+      "files": [
+        "**/*.json"
+      ],
+      "rules": {
+        "no-unused-expressions": "off"
+      }
+    },
+    {
+      "files": [
+        "**/*.tsx"
+      ],
+      "rules": {
+        "react/jsx-pascal-case": "off"
+      }
+    }
+  ],
+  "root": true
+}
